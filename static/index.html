@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SHIELD Cybersecurity - Protect Your Digital World">
+  <meta name="keywords" content="cybersecurity, digital security, internet safety">
+  <meta name="author" content="SHIELD Cybersecurity">
+  <title>THE SHIELD</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <header id="navbar">
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#articles">Articles</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#" id="mode-toggle">Toggle Dark Mode</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home">
+    <div class="hero">
+      <!-- Background Video -->
+      <video autoplay muted loop id="hero-video">
+        <source src="background-video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="hero-content">
+        <h1>THE SHIELD</h1>
+        <!-- Add the image below the name -->
+        <img src="shield-logo.png" alt="THE SHIELD Logo" class="shield-logo">
+        <marquee behavior="scroll" direction="left" scrollamount="10">Your first line of defense against cyber threats!</marquee>
+        <marquee behavior="scroll" direction="right" scrollamount="10">Stay safe, stay secure!</marquee>
+        <marquee behavior="scroll" direction="left" scrollamount="10">Cybersecurity is a shared responsibility!</marquee>
+        <button onclick="window.open('quiz.html', '_blank')">Take Our Cybersecurity Quiz</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services">
+    <h2>Our Services</h2>
+    <div class="services-container">
+      <button class="service-button" onclick="window.open('security-audits.html', '_blank')">
+        <h3>Security Audits</h3>
+        <p>We perform comprehensive security audits to identify vulnerabilities.</p>
+      </button>
+      <button class="service-button" onclick="window.open('incident-response.html', '_blank')">
+        <h3>Incident Response</h3>
+        <p>We help you respond to and recover from cyber attacks.</p>
+      </button>
+      <button class="service-button" onclick="window.open('network-protection.html', '_blank')">
+        <h3>Network Protection</h3>
+        <p>Protect your network with firewalls, encryption, and security protocols.</p>
+      </button>
+    </div>
+  </section>
+
+  <!-- Articles Section -->
+  <section id="articles">
+    <h2>Cybersecurity Articles</h2>
+    <div class="article">
+      <h3>How to Protect Yourself from Phishing Attacks</h3>
+      <p class="article-summary">Learn the best practices to avoid falling victim to phishing scams.</p>
+      <button onclick="toggleArticle('article1')">Read More</button>
+      <div id="article1" class="full-article">
+        <p>Phishing is a form of cyberattack where attackers impersonate legitimate entities to steal personal information. Here’s how to protect yourself:</p>
+        <ul>
+          <li>Never click on suspicious links in emails.</li>
+          <li>Verify the sender's email address.</li>
+          <li>Use two-factor authentication (2FA).</li>
+        </ul>
+      </div>
+    </div>
+    <div class="article">
+      <h3>Understanding Network Security</h3>
+      <p class="article-summary">A guide to understanding the importance of securing your networks.</p>
+      <button onclick="toggleArticle('article2')">Read More</button>
+      <div id="article2" class="full-article">
+        <p>Network security involves implementing measures to protect your network from unauthorized access, misuse, or theft. Key practices include:</p>
+        <ul>
+          <li>Using strong passwords and encryption.</li>
+          <li>Regularly updating software and firmware.</li>
+          <li>Deploying firewalls and intrusion detection systems.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="article">
+      <h3>What is Ransomware and How to Prevent It</h3>
+      <p class="article-summary">Learn about ransomware and how to protect your systems.</p>
+      <button onclick="toggleArticle('article3')">Read More</button>
+      <div id="article3" class="full-article">
+        <p>Ransomware is a type of malware that encrypts your files and demands payment for their release. Here’s how to prevent it:</p>
+        <ul>
+          <li>Regularly back up your data.</li>
+          <li>Keep your software updated.</li>
+          <li>Use antivirus and anti-malware software.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="article">
+      <h3>The Importance of Two-Factor Authentication</h3>
+      <p class="article-summary">Why 2FA is essential for securing your accounts.</p>
+      <button onclick="toggleArticle('article4')">Read More</button>
+      <div id="article4" class="full-article">
+        <p>Two-factor authentication (2FA) adds an extra layer of security to your accounts. Here’s why it’s important:</p>
+        <ul>
+          <li>It requires a second form of verification.</li>
+          <li>It reduces the risk of unauthorized access.</li>
+          <li>It’s easy to set up and use.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="article">
+      <h3>How to Create Strong Passwords</h3>
+      <p class="article-summary">Tips for creating passwords that are hard to crack.</p>
+      <button onclick="toggleArticle('article5')">Read More</button>
+      <div id="article5" class="full-article">
+        <p>Strong passwords are essential for protecting your accounts. Here’s how to create them:</p>
+        <ul>
+          <li>Use a mix of letters, numbers, and symbols.</li>
+          <li>Avoid using common words or phrases.</li>
+          <li>Make your passwords at least 12 characters long.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <p>&copy; 2025 THE SHIELD. All Rights Reserved.</p>
+    <p>Email: support@shieldcyber.com | Phone:+91 9848857884</p>
+    <div class="social-links">
+      <a href="https://github.com/GaouravPatil/Cybersecurity-website">Github</a> | <a href="#">Twitter</a> | <a href="#">LinkedIn</a>
+    </div>
+  </footer>
+
+  <script>
+    // Toggle Dark Mode
+    const modeToggle = document.getElementById('mode-toggle');
+    modeToggle.addEventListener('click', function () {
+      document.body.classList.toggle('dark-mode');
+    });
+
+    // Toggle Article Visibility
+    function toggleArticle(articleId) {
+      const article = document.getElementById(articleId);
+      article.style.display = article.style.display === 'none' ? 'block' : 'none';
+    }
+  </script>
+
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f1f1f1;
+      color: #333;
+    }
+
+    header {
+      background-color: #222;
+      color: #fff;
+      padding: 10px 0;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      padding: 0;
+    }
+
+    header nav ul li {
+      margin: 0 20px;
+    }
+
+    header nav ul li a {
+      text-decoration: none;
+      color: #00aaff;
+      font-weight: bold;
+    }
+
+    header nav ul li a:hover {
+      color: #fff;
+    }
+
+    /* Hero Section */
+    #home .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    #hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .hero-content {
+      z-index: 1;
+    }
+
+    #home h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+
+    .shield-logo {
+      width: 150px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    marquee {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    button {
+      background-color: #00aaff;
+      border: none;
+      padding: 15px 30px;
+      color: white;
+      font-size: 1.2em;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0088cc;
+    }
+
+    /* Services Section */
+    #services {
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .services-container {
+      display: flex;
+      justify-content: space-around;
+      gap: 20px;
+    }
+
+    .service-button {
+      background-color: #222;
+      color: white;
+      padding: 20px;
+      width: 30%;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .service-button h3 {
+      margin-top: 0;
+    }
+
+    /* Articles Section */
+    #articles {
+      padding: 50px 20px;
+    }
+
+    .article {
+      background-color: #f1f1f1;
+      margin-bottom: 20px;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    .full-article {
+      display: none;
+      margin-top: 20px;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #222;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .social-links {
+      margin-top: 10px;
+    }
+
+    .social-links a {
+      text-decoration: none;
+      color: #00aaff;
+    }
+
+    .social-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Dark Mode Styles */
+    body.dark-mode {
+      background-color: #121212;
+      color: #ffffff;
+    }
+
+    body.dark-mode header {
+      background-color: #333;
+    }
+
+    body.dark-mode #home .hero {
+      background: linear-gradient(to right, #333, #00aaff);
+    }
+
+    body.dark-mode .service-button {
+      background-color: #333;
+    }
+
+    body.dark-mode footer {
+      background-color: #333;
+    }
+
+    body.dark-mode .social-links a {
+      color: #00aaff;
+    }
+
+    body.dark-mode .article {
+      background-color: #333;
+      color: #ffffff;
+    }
+
+    body.dark-mode .full-article {
+      color: #ffffff;
+    }
+
+    /* Media Queries */
+    @media (max-width: 768px) {
+      header nav ul {
+        flex-direction: column;
+      }
+
+      .services-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .service-button {
+        width: 80%;
+      }
+    }
+  </style>
+  <!-- AI Chat Interface -->
+<div class="chat-container">
+  <button class="chat-toggle" onclick="toggleChat()">💬 AI Assistant</button>
+  <div class="chat-window" id="chatWindow">
+    <div class="chat-header">
+      <h3>Gemini Cybersecurity Assistant</h3>
+      <button class="close-btn" onclick="toggleChat()">×</button>
+    </div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="Ask about cybersecurity...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .chat-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+
+  .chat-toggle {
+    padding: 15px 25px;
+    background: #00aaff;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  .chat-window {
+    display: none;
+    width: 350px;
+    height: 500px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    flex-direction: column;
+  }
+
+  .chat-header {
+    background: #222;
+    color: white;
+    padding: 15px;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .chat-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+  }
+
+  .chat-input {
+    display: flex;
+    padding: 15px;
+    border-top: 1px solid #ddd;
+  }
+
+  .chat-input input {
+    flex: 1;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+
+  .message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    background: #f1f1f1;
+  }
+
+  .message.ai {
+    background: #00aaff;
+    color: white;
+  }
+</style>
+
+<script>
+  function toggleChat() {
+    const chatWindow = document.getElementById('chatWindow');
+    chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex';
+  }
+
+  async function sendMessage() {
+    const userInput = document.getElementById('userInput');
+    const message = userInput.value.trim();
+    if (!message) return;
+
+    // Add user message
+    const chatMessages = document.getElementById('chatMessages');
+    chatMessages.innerHTML += `<div class="message">${message}</div>`;
+    
+    // Add loading indicator
+    chatMessages.innerHTML += `<div class="message ai">Thinking...</div>`;
+    userInput.value = '';
+    
+    try {
+      const response = await fetch('http://localhost:8080/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message }),
+      });
+
+      const data = await response.json();
+      
+      // Replace loading message with actual response
+      chatMessages.lastElementChild.innerHTML = `
+        <div class="message ai">
+          <strong>Gemini:</strong> ${data.response}
+        </div>
+      `;
+    } catch (error) {
+      chatMessages.lastElementChild.innerHTML = `
+        <div class="message ai error">
+          Error: Could not get response
+        </div>
+      `;
+    }
+  }
+</script>
+</body>
+
+</html>

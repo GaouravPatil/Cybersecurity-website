@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Audits</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      color: #333;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Security Audits</h1>
+  <div class="content">
+    <p>Security audits are a critical component of any organization's cybersecurity strategy. They involve a comprehensive examination of an organization's information systems, policies, and procedures to identify vulnerabilities and ensure compliance with security standards. A security audit typically includes the following steps:</p>
+    <ol>
+      <li><strong>Planning:</strong> Define the scope and objectives of the audit.</li>
+      <li><strong>Data Collection:</strong> Gather information about the systems and processes to be audited.</li>
+      <li><strong>Assessment:</strong> Evaluate the effectiveness of security controls and identify vulnerabilities.</li>
+      <li><strong>Reporting:</strong> Document findings and provide recommendations for improvement.</li>
+      <li><strong>Follow-up:</strong> Monitor the implementation of recommended changes.</li>
+    </ol>
+    <p>Security audits help organizations identify and mitigate risks, protect sensitive data, and ensure compliance with regulatory requirements. They are essential for maintaining the integrity and confidentiality of information systems.</p>
+    <!-- Add more content to reach 1000+ words -->
+  </div>
+  <!-- AI Chat Interface -->
+<div class="chat-container">
+  <button class="chat-toggle" onclick="toggleChat()">💬 AI Assistant</button>
+  <div class="chat-window" id="chatWindow">
+    <div class="chat-header">
+      <h3>Gemini Cybersecurity Assistant</h3>
+      <button class="close-btn" onclick="toggleChat()">×</button>
+    </div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="Ask about cybersecurity...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .chat-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+
+  .chat-toggle {
+    padding: 15px 25px;
+    background: #00aaff;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  .chat-window {
+    display: none;
+    width: 350px;
+    height: 500px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    flex-direction: column;
+  }
+
+  .chat-header {
+    background: #222;
+    color: white;
+    padding: 15px;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .chat-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+  }
+
+  .chat-input {
+    display: flex;
+    padding: 15px;
+    border-top: 1px solid #ddd;
+  }
+
+  .chat-input input {
+    flex: 1;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+
+  .message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    background: #f1f1f1;
+  }
+
+  .message.ai {
+    background: #00aaff;
+    color: white;
+  }
+</style>
+
+<script>
+  function toggleChat() {
+    const chatWindow = document.getElementById('chatWindow');
+    chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex';
+  }
+
+  async function sendMessage() {
+    const userInput = document.getElementById('userInput');
+    const message = userInput.value.trim();
+    if (!message) return;
+
+    // Add user message
+    const chatMessages = document.getElementById('chatMessages');
+    chatMessages.innerHTML += `<div class="message">${message}</div>`;
+    
+    // Add loading indicator
+    chatMessages.innerHTML += `<div class="message ai">Thinking...</div>`;
+    userInput.value = '';
+    
+    try {
+      const response = await fetch('http://localhost:8080/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message }),
+      });
+
+      const data = await response.json();
+      
+      // Replace loading message with actual response
+      chatMessages.lastElementChild.innerHTML = `
+        <div class="message ai">
+          <strong>Gemini:</strong> ${data.response}
+        </div>
+      `;
+    } catch (error) {
+      chatMessages.lastElementChild.innerHTML = `
+        <div class="message ai error">
+          Error: Could not get response
+        </div>
+      `;
+    }
+  }
+</script>
+</body>
+
+</html>

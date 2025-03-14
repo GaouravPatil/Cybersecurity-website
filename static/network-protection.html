@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Network Protection</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      color: #333;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Network Protection</h1>
+  <div class="content">
+    <p>Network protection involves implementing measures to secure a computer network from unauthorized access, misuse, or theft. It is a critical component of cybersecurity, as networks are often the primary target of cyberattacks. Key practices for network protection include:</p>
+    <ol>
+      <li><strong>Firewalls:</strong> Use firewalls to monitor and control incoming and outgoing network traffic.</li>
+      <li><strong>Encryption:</strong> Encrypt data to protect it from unauthorized access.</li>
+      <li><strong>Intrusion Detection Systems (IDS):</strong> Deploy IDS to detect and respond to potential threats.</li>
+      <li><strong>Regular Updates:</strong> Keep software and firmware up to date to patch vulnerabilities.</li>
+      <li><strong>Access Control:</strong> Implement strong access control measures to restrict access to sensitive data.</li>
+    </ol>
+    <p>Network protection is essential for safeguarding sensitive data and ensuring the integrity of systems. A robust network security strategy includes multiple layers of defense, such as firewalls, antivirus software, and intrusion detection systems. Firewalls act as a barrier between your internal network and external threats, while antivirus software helps detect and remove malicious software.</p>
+    <!-- Add more content to exceed 2000 words -->
+    <p>Encryption is another critical component of network protection. By encrypting data, you ensure that even if it is intercepted, it cannot be read without the encryption key. Regularly updating your software and firmware is also crucial, as updates often include patches for security vulnerabilities that could be exploited by attackers.</p>
+    <p>Access control measures are essential for restricting access to sensitive data. This may include implementing strong password policies, using multi-factor authentication, and limiting access to specific users or roles. By implementing these measures, organizations can reduce the risk of unauthorized access and protect their networks from cyber threats.</p>
+    <p>In addition to these practices, organizations should also conduct regular security audits to identify vulnerabilities and ensure compliance with security standards. Security audits involve a comprehensive examination of an organization's information systems, policies, and procedures to identify vulnerabilities and ensure compliance with security standards. By conducting regular security audits, organizations can identify and mitigate risks, protect sensitive data, and ensure compliance with regulatory requirements.</p>
+    <!-- Continue adding content to reach 2000+ words -->
+  </div>
+  <!-- AI Chat Interface -->
+<div class="chat-container">
+  <button class="chat-toggle" onclick="toggleChat()">💬 AI Assistant</button>
+  <div class="chat-window" id="chatWindow">
+    <div class="chat-header">
+      <h3>Gemini Cybersecurity Assistant</h3>
+      <button class="close-btn" onclick="toggleChat()">×</button>
+    </div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="Ask about cybersecurity...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .chat-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+
+  .chat-toggle {
+    padding: 15px 25px;
+    background: #00aaff;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+
+  .chat-window {
+    display: none;
+    width: 350px;
+    height: 500px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    flex-direction: column;
+  }
+
+  .chat-header {
+    background: #222;
+    color: white;
+    padding: 15px;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .chat-messages {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+  }
+
+  .chat-input {
+    display: flex;
+    padding: 15px;
+    border-top: 1px solid #ddd;
+  }
+
+  .chat-input input {
+    flex: 1;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+
+  .message {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    background: #f1f1f1;
+  }
+
+  .message.ai {
+    background: #00aaff;
+    color: white;
+  }
+</style>
+
+<script>
+  function toggleChat() {
+    const chatWindow = document.getElementById('chatWindow');
+    chatWindow.style.display = chatWindow.style.display === 'flex' ? 'none' : 'flex';
+  }
+
+  async function sendMessage() {
+    const userInput = document.getElementById('userInput');
+    const message = userInput.value.trim();
+    if (!message) return;
+
+    // Add user message
+    const chatMessages = document.getElementById('chatMessages');
+    chatMessages.innerHTML += `<div class="message">${message}</div>`;
+    
+    // Add loading indicator
+    chatMessages.innerHTML += `<div class="message ai">Thinking...</div>`;
+    userInput.value = '';
+    
+    try {
+      const response = await fetch('http://localhost:8080/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ message }),
+      });
+
+      const data = await response.json();
+      
+      // Replace loading message with actual response
+      chatMessages.lastElementChild.innerHTML = `
+        <div class="message ai">
+          <strong>Gemini:</strong> ${data.response}
+        </div>
+      `;
+    } catch (error) {
+      chatMessages.lastElementChild.innerHTML = `
+        <div class="message ai error">
+          Error: Could not get response
+        </div>
+      `;
+    }
+  }
+</script>
+</body>
+
+</html>
